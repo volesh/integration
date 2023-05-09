@@ -1,4 +1,6 @@
 import express, { Request, Response } from "express";
+import { config } from "dotenv";
+config();
 
 const app = express();
 
@@ -14,7 +16,7 @@ app.get("/", (req, res) => {
 app.post("/webhook", async (req: Request, res: Response) => {
   console.log("code in endpoint", code);
   const data = await fetch(
-    `https://api.timelyapp.com/1.1/oauth/token?redirect_uri=https://misty-erin-armadillo.cyclic.app/getToknes&code=${code}&client_id=bZS8omITNNblYpEA-AI1bVTWQ_pB_rgE8n_kyySrz7A&client_secret=T-9KGYgTiZqmVaYoqSckUPHPnvhiFy7-IG0tv-lpdq4&grant_type=authorization_code`,
+    `https://api.timelyapp.com/1.1/oauth/token?redirect_uri=https://careful-wig-cow.cyclic.app/getToknes&code=${code}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&grant_type=authorization_code`,
     { method: "POST" }
   );
 
