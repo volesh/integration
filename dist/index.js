@@ -13,6 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const dotenv_1 = require("dotenv");
+(0, dotenv_1.config)();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
@@ -22,7 +24,7 @@ app.get("/", (req, res) => {
 });
 app.post("/webhook", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log("code in endpoint", code);
-    const data = yield fetch(`https://api.timelyapp.com/1.1/oauth/token?redirect_uri=https://misty-erin-armadillo.cyclic.app/getToknes&code=${code}&client_id=bZS8omITNNblYpEA-AI1bVTWQ_pB_rgE8n_kyySrz7A&client_secret=T-9KGYgTiZqmVaYoqSckUPHPnvhiFy7-IG0tv-lpdq4&grant_type=authorization_code`, { method: "POST" });
+    const data = yield fetch(`https://api.timelyapp.com/1.1/oauth/token?redirect_uri=https://careful-wig-cow.cyclic.app/getToknes&code=${code}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&grant_type=authorization_code`, { method: "POST" });
     console.log(data);
     res.end();
 }));
