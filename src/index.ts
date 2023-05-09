@@ -20,7 +20,7 @@ app.post("/webhook", async (req: Request, res: Response) => {
     { method: "POST" }
   );
   const json = await data.json;
-  console.log("its data", data);
+  console.log("its data", json);
   res.json(json);
 });
 
