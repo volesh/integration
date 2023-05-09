@@ -20,8 +20,8 @@ app.post("/webhook", async (req: Request, res: Response) => {
     { method: "POST" }
   );
 
-  console.log(data);
-  res.end();
+  console.log("its data", data);
+  res.json(data);
 });
 
 app.get("/getToknes", (req, res) => {
