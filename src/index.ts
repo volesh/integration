@@ -19,7 +19,7 @@ app.post("/webhook", async (req: Request, res: Response) => {
     `https://api.timelyapp.com/1.1/oauth/token?redirect_uri=https://careful-wig-cow.cyclic.app/getToknes&code=${code}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&grant_type=authorization_code`,
     { method: "POST" }
   );
-  const json = await data.json;
+  const json = await data.json();
   console.log("its data", json);
   res.json(json);
 });
