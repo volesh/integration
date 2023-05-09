@@ -21,6 +21,7 @@ app.get("/", (req, res) => {
     res.json("Working");
 });
 app.post("/webhook", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("code in endpoint", code);
     const data = yield fetch(`https://api.timelyapp.com/1.1/oauth/token?redirect_uri=https://misty-erin-armadillo.cyclic.app/getToknes&code=${code}&client_id=bZS8omITNNblYpEA-AI1bVTWQ_pB_rgE8n_kyySrz7A&client_secret=T-9KGYgTiZqmVaYoqSckUPHPnvhiFy7-IG0tv-lpdq4&grant_type=authorization_code`, { method: "POST" });
     console.log(data);
     res.end();
