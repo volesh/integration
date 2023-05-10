@@ -54,23 +54,27 @@ app.post("/webhook", async (req: Request, res: Response) => {
     },
   };
 
-  const CreatedProject = await fetch(`https://api.timelyapp.com/1.1/${account[0].id}/projects`, {
-    method: "POST",
-    body: JSON.stringify(dataForProject),
-    headers: {
-      Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
-    },
-  }).then((data) => data.json());
-  // const data = await fetch(
-  //   `https://api.timelyapp.com/1.1/oauth/token?redirect_uri=https://careful-wig-cow.cyclic.app/getToknes&code=${code}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&grant_type=authorization_code`,
-  //   { method: "POST" }
-  // );
-  // const json = await data.json();
-  console.log("its data", req.body);
-  console.log(CreatedProject);
+  try {
+    const CreatedProject = await fetch(`https://api.timelyapp.com/1.1/${account[0].id}/projects`, {
+      method: "POST",
+      body: JSON.stringify(dataForProject),
+      headers: {
+        Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
+      },
+    }).then((data) => data.json());
+    console.log(CreatedProject);
+  } catch (e) {
+    console.log(e);
+  }
 
   res.end();
 });
+
+// const data = await fetch(
+//   `https://api.timelyapp.com/1.1/oauth/token?redirect_uri=https://careful-wig-cow.cyclic.app/getToknes&code=${code}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&grant_type=authorization_code`,
+//   { method: "POST" }
+// );
+// const json = await data.json();
 
 app.get("/getToknes", (req, res) => {
   console.log(req.query.code);
