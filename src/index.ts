@@ -44,10 +44,10 @@ app.post("/budget", async (req, res) => {
   };
   if (req.body.budget.type === "TIME") {
     body.budget_type = "H";
-    body.budget = project.budget.capacity / 60;
+    body.budget = req.body.budget.capacity / 60;
   } else {
     body.budget_type = "M";
-    body.budget = project.budget.capacity / 100;
+    body.budget = req.body.budget.capacity / 100;
   }
   const selectedProject = projectsArr.find((elem) => (elem.name = projectName));
   console.log("Selected project=", selectedProject);
