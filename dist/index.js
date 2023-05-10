@@ -22,10 +22,53 @@ let code = "";
 app.get("/", (req, res) => {
     res.json("Working");
 });
-app.post("/budget", (req, res) => {
+app.post("/budget", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
+    const projectId = req.body.budget.projectId;
+    const { project } = yield fetch(`https://vladscompany3.teamwork.com/projects/${projectId}.json`, {
+        headers: {
+            Authorization: "Basic " + Buffer.from("twp_B8MG9eAALkD2fS8QTPHh3djd1O8T" + ":" + "password").toString("base64"),
+        },
+    }).then((data) => data.json());
+    console.log("Teamwork project", project);
+    const projectName = project.name;
+    const account = yield fetch("https://api.timelyapp.com/1.1/accounts", {
+        headers: {
+            Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
+        },
+    }).then((data) => data.json());
+    console.log("Account", account);
+    const projectsArr = yield fetch(`https://api.timelyapp.com/1.1/${account[0].id}/projects`, {
+        headers: {
+            Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
+        },
+    }).then((data) => data.json());
+    console.log("Projects arr", projectsArr);
+    const body = {
+        budget: 0,
+        budget_type: "",
+    };
+    if (project.budget.type === "TIME") {
+        body.budget_type = "H";
+        body.budget = project.budget.capacity / 60;
+    }
+    else {
+        body.budget_type = "M";
+        body.budget = project.budget.capacity / 100;
+    }
+    const selectedProject = projectsArr.find((elem) => (elem.name = projectName));
+    console.log("Selected project=", selectedProject);
+    const updatedProject = yield fetch(`https://api.timelyapp.com/1.1/${account[0].id}/projects/${selectedProject.id}`, {
+        body: JSON.stringify(body),
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
+        },
+    }).then((data) => data.json());
+    console.log("UpdatedProject = ", updatedProject);
     res.end();
-});
+}));
 app.post("/webhook", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const project = req.body.project;
     // Get email adres
