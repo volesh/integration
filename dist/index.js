@@ -24,17 +24,18 @@ app.get("/", (req, res) => {
 });
 app.post("/webhook", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const project = req.body.project;
+    console.log("User id=", req.body.eventCreator.id);
     // Get email adres
     const user = yield fetch(`https://vladscompany3.teamwork.com/people/${req.body.eventCreator.id}.json`, {
         headers: {
-            Authorization: "Basic " + "twp_B8MG9eAALkD2fS8QTPHh3djd1O8T" + ":a",
+            Authorization: "Basic " + Buffer.from("twp_B8MG9eAALkD2fS8QTPHh3djd1O8T" + ":" + "password").toString("base64"),
         },
     }).then((data) => data.json());
     const account = yield fetch("https://api.timelyapp.com/1.1/accounts", {
         headers: {
             Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
         },
-    }).then((data) => data.json())[0];
+    }).then((data) => data.json());
     console.log("User", user);
     console.log("Account", account);
     // const data = await fetch(
