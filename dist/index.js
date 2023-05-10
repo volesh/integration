@@ -22,6 +22,10 @@ let code = "";
 app.get("/", (req, res) => {
     res.json("Working");
 });
+app.post("/budget", (req, res) => {
+    console.log(req.body);
+    res.end();
+});
 app.post("/webhook", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const project = req.body.project;
     // Get email adres

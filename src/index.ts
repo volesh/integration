@@ -13,6 +13,11 @@ app.get("/", (req, res) => {
   res.json("Working");
 });
 
+app.post("/budget", (req, res) => {
+  console.log(req.body);
+  res.end();
+});
+
 app.post("/webhook", async (req: Request, res: Response) => {
   const project = req.body.project;
   // Get email adres
