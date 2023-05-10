@@ -35,7 +35,12 @@ app.post("/webhook", async (req: Request, res: Response) => {
   }).then((data) => data.json());
   const clientId = clients[0].id;
   ////////////////////////////////////////////////////////////////////////////
-  const tiamlyUser = await fetch(`https://api.timelyapp.com/1.1/${account[0].id}/users/current`).then((data) => data.json());
+  const tiamlyUser = await fetch(`https://api.timelyapp.com/1.1/${account[0].id}/users/current`, {
+    headers: {
+      Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
+    },
+  }).then((data) => data.json());
+  console.log(tiamlyUser);
 
   console.log(`UserId=${tiamlyUser.id}`, `Client_id=${clientId}`, `Name=${project.name}`);
 
