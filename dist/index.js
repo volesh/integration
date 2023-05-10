@@ -48,7 +48,7 @@ app.post("/budget", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         budget: 0,
         budget_type: "",
     };
-    if (project.budget.type === "TIME") {
+    if (req.body.budget.type === "TIME") {
         body.budget_type = "H";
         body.budget = project.budget.capacity / 60;
     }

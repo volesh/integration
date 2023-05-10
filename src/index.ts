@@ -42,7 +42,7 @@ app.post("/budget", async (req, res) => {
     budget: 0,
     budget_type: "",
   };
-  if (project.budget.type === "TIME") {
+  if (req.body.budget.type === "TIME") {
     body.budget_type = "H";
     body.budget = project.budget.capacity / 60;
   } else {
