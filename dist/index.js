@@ -67,7 +67,7 @@ app.post("/webhook", (req, res) => __awaiter(void 0, void 0, void 0, function* (
             headers: {
                 Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
             },
-        }).then((data) => data.json());
+        });
         console.log(CreatedProject);
     }
     catch (e) {
