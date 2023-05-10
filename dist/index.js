@@ -51,12 +51,29 @@ app.post("/webhook", (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }).then((data) => data.json());
     console.log(tiamlyUser);
     console.log(`UserId=${tiamlyUser.id}`, `Client_id=${clientId}`, `Name=${project.name}`);
+    const dataForProject = {
+        project: {
+            name: project.name,
+            rate_type: "project",
+            color: "67a3bc",
+            client_id: clientId,
+            users: [{ user_id: tiamlyUser.id }],
+        },
+    };
+    const CreatedProject = yield fetch(`https://api.timelyapp.com/1.1/${account[0].id}/projects`, {
+        method: "POST",
+        body: JSON.stringify(dataForProject),
+        headers: {
+            Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
+        },
+    }).then((data) => data.json());
     // const data = await fetch(
     //   `https://api.timelyapp.com/1.1/oauth/token?redirect_uri=https://careful-wig-cow.cyclic.app/getToknes&code=${code}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&grant_type=authorization_code`,
     //   { method: "POST" }
     // );
     // const json = await data.json();
     console.log("its data", req.body);
+    console.log(CreatedProject);
     res.end();
 }));
 app.get("/getToknes", (req, res) => {
