@@ -30,7 +30,7 @@ app.post("/budget", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             Authorization: "Basic " + Buffer.from("twp_B8MG9eAALkD2fS8QTPHh3djd1O8T" + ":" + "password").toString("base64"),
         },
     }).then((data) => data.json());
-    // console.log("Teamwork project", project);
+    console.log("Teamwork project", project);
     const projectName = project.name;
     const account = yield fetch("https://api.timelyapp.com/1.1/accounts", {
         headers: {

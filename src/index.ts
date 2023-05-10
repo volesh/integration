@@ -21,7 +21,7 @@ app.post("/budget", async (req, res) => {
       Authorization: "Basic " + Buffer.from("twp_B8MG9eAALkD2fS8QTPHh3djd1O8T" + ":" + "password").toString("base64"),
     },
   }).then((data) => data.json());
-  // console.log("Teamwork project", project);
+  console.log("Teamwork project", project);
 
   const projectName = project.name;
   const account = await fetch("https://api.timelyapp.com/1.1/accounts", {
