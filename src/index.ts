@@ -50,7 +50,7 @@ app.post("/budget", async (req, res) => {
     body.budget = req.body.budget.capacity / 100;
   }
   const selectedProject = projectsArr.find((elem) => (elem.name = projectName));
-  console.log("Selected project=", selectedProject.id);
+  console.log("Selected project=", selectedProject);
 
   const updatedProject = await fetch(`https://api.timelyapp.com/1.1/${account[0].id}/projects/${selectedProject.id}`, {
     body: JSON.stringify(body),
