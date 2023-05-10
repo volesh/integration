@@ -59,6 +59,7 @@ app.post("/webhook", async (req: Request, res: Response) => {
       method: "POST",
       body: JSON.stringify(dataForProject),
       headers: {
+        "Content-Type": "application/json",
         Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
       },
     }).then((data) => data.json());
