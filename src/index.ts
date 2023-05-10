@@ -36,7 +36,7 @@ app.post("/budget", async (req, res) => {
       Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
     },
   }).then((data) => data.json());
-  // console.log("Projects arr", projectsArr);
+  console.log("Projects arr", projectsArr);
 
   const body = {
     budget: 0,
@@ -50,7 +50,7 @@ app.post("/budget", async (req, res) => {
     body.budget = req.body.budget.capacity / 100;
   }
   const selectedProject = projectsArr.find((elem) => (elem.name = projectName));
-  console.log("Selected project=", selectedProject);
+  // console.log("Selected project=", selectedProject);
 
   const updatedProject = await fetch(`https://api.timelyapp.com/1.1/${account[0].id}/projects/${selectedProject.id}`, {
     body: JSON.stringify(body),
