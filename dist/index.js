@@ -23,11 +23,14 @@ app.get("/", (req, res) => {
     res.json("Working");
 });
 app.post("/webhook", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("code in endpoint", code);
-    const data = yield fetch(`https://api.timelyapp.com/1.1/oauth/token?redirect_uri=https://careful-wig-cow.cyclic.app/getToknes&code=${code}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&grant_type=authorization_code`, { method: "POST" });
-    const json = yield data.json();
-    console.log("its data", json);
-    res.json(json);
+    const project = req.body.project;
+    // const data = await fetch(
+    //   `https://api.timelyapp.com/1.1/oauth/token?redirect_uri=https://careful-wig-cow.cyclic.app/getToknes&code=${code}&client_id=${process.env.CLIENT_ID}&client_secret=${process.env.CLIENT_SECRET}&grant_type=authorization_code`,
+    //   { method: "POST" }
+    // );
+    // const json = await data.json();
+    console.log("its data", req.body);
+    res.end();
 }));
 app.get("/getToknes", (req, res) => {
     console.log(req.query.code);
