@@ -22,10 +22,16 @@ let code = "";
 app.get("/", (req, res) => {
     res.json("Working");
 });
-app.post("/hours", (req, res) => {
+app.post("/hours", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
+    const data = yield fetch(`https://api.timelyapp.com/1.1${req.body.payload.entity_path}`, {
+        headers: {
+            Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
+        },
+    }).then((data) => data.json());
+    console.log("Data=", data);
     res.end();
-});
+}));
 app.post("/budget", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
     const projectId = req.body.budget.projectId;

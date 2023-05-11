@@ -13,8 +13,15 @@ app.get("/", (req, res) => {
   res.json("Working");
 });
 
-app.post("/hours", (req, res) => {
+app.post("/hours", async (req, res) => {
   console.log(req.body);
+  const data = await fetch(`https://api.timelyapp.com/1.1${req.body.payload.entity_path}`, {
+    headers: {
+      Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
+    },
+  }).then((data) => data.json());
+  console.log("Data=", data);
+
   res.end();
 });
 
