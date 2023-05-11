@@ -17,6 +17,7 @@ app.post("/hours", async (req, res) => {
   console.log(req.body);
   const data = await fetch(`https://api.timelyapp.com/1.1${req.body.payload.entity_path}`, {
     headers: {
+      "Content-Type": "application/json",
       Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
     },
   }).then((data) => data.json());
