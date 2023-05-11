@@ -25,7 +25,12 @@ app.get("/", (req, res) => {
 app.post("/hours", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
     console.log(`https://api.timelyapp.com/1.1${req.body.payload.entity_path}`);
-    const data = yield fetch(`https://api.timelyapp.com/1.1${req.body.payload.entity_path}`, {
+    const account = yield fetch("https://api.timelyapp.com/1.1/accounts", {
+        headers: {
+            Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
+        },
+    }).then((data) => data.json());
+    const data = yield fetch(`https://app.timelyapp.com/${account[0].id}${req.body.payload.entity_path}`, {
         headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",

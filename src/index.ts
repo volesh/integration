@@ -16,8 +16,13 @@ app.get("/", (req, res) => {
 app.post("/hours", async (req, res) => {
   console.log(req.body);
   console.log(`https://api.timelyapp.com/1.1${req.body.payload.entity_path}`);
+  const account = await fetch("https://api.timelyapp.com/1.1/accounts", {
+    headers: {
+      Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
+    },
+  }).then((data) => data.json());
 
-  const data = await fetch(`https://api.timelyapp.com/1.1${req.body.payload.entity_path}`, {
+  const data = await fetch(`https://app.timelyapp.com/${account[0].id}${req.body.payload.entity_path}`, {
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
