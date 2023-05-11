@@ -22,6 +22,9 @@ let code = "";
 app.get("/", (req, res) => {
     res.json("Working");
 });
+app.post("/hours", (req, res) => {
+    console.log(req.body);
+});
 app.post("/budget", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
     const projectId = req.body.budget.projectId;

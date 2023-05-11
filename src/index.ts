@@ -13,6 +13,10 @@ app.get("/", (req, res) => {
   res.json("Working");
 });
 
+app.post("/hours", (req, res) => {
+  console.log(req.body);
+});
+
 app.post("/budget", async (req, res) => {
   console.log(req.body);
   const projectId = req.body.budget.projectId;
