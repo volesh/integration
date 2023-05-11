@@ -15,6 +15,7 @@ app.get("/", (req, res) => {
 
 app.post("/hours", (req, res) => {
   console.log(req.body);
+  res.end();
 });
 
 app.post("/budget", async (req, res) => {

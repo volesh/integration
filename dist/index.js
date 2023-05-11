@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
 });
 app.post("/hours", (req, res) => {
     console.log(req.body);
+    res.end();
 });
 app.post("/budget", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log(req.body);
