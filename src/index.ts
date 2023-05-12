@@ -33,6 +33,7 @@ app.post("/hours", async (req, res) => {
   const description = data.note;
   const hours = data.duration.hours;
   const minutes = data.duration.minutes;
+
   console.log("Data=", {
     userEmail,
     date,
