@@ -64,7 +64,6 @@ app.post("/hours", async (req, res) => {
 
   const body = {
     timelog: {
-      userEmail,
       date,
       description,
       isBillable: true,
@@ -80,6 +79,7 @@ app.post("/hours", async (req, res) => {
 
   const created = await fetch(`https://vladscompany3.teamwork.com/projects/api/v3/projects/${projectId}/time.json`, {
     body: JSON.stringify(body),
+    method: "POST",
     headers: {
       Authorization: "Basic " + Buffer.from("twp_B8MG9eAALkD2fS8QTPHh3djd1O8T" + ":" + "password").toString("base64"),
     },

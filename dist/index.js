@@ -63,7 +63,6 @@ app.post("/hours", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     console.log("Project id=", projectId);
     const body = {
         timelog: {
-            userEmail,
             date,
             description,
             isBillable: true,
@@ -77,6 +76,7 @@ app.post("/hours", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     console.log("URl=", `https://vladscompany3.teamwork.com/projects/api/v3/projects/${projectId}/time.json`);
     const created = yield fetch(`https://vladscompany3.teamwork.com/projects/api/v3/projects/${projectId}/time.json`, {
         body: JSON.stringify(body),
+        method: "POST",
         headers: {
             Authorization: "Basic " + Buffer.from("twp_B8MG9eAALkD2fS8QTPHh3djd1O8T" + ":" + "password").toString("base64"),
         },
