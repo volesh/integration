@@ -63,12 +63,14 @@ app.post("/hours", async (req, res) => {
   console.log("Project id=", projectId);
 
   const body = {
-    userEmail,
-    date,
-    description,
-    hours,
-    minutes,
-    userId,
+    timelog: {
+      userEmail,
+      date,
+      description,
+      hours,
+      minutes,
+      userId,
+    },
   };
   console.log("create time at timework");
   console.log("URl=", `https://vladscompany3.teamwork.com/projects/api/v3/projects/${projectId}/time.json`);
