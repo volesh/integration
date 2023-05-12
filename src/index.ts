@@ -71,6 +71,7 @@ app.post("/hours", async (req, res) => {
     userId,
   };
   console.log("create time at timework");
+  console.log("URl=", `https://vladscompany3.teamwork.com/projects/api/v3/projects/${projectId}/time.json`);
 
   const created = await fetch(`https://vladscompany3.teamwork.com/projects/api/v3/projects/${projectId}/time.json`, {
     body: JSON.stringify(body),

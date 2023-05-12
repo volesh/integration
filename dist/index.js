@@ -58,7 +58,9 @@ app.post("/hours", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     console.log("Find people id");
     const { id: userId } = people.find((user) => user["email-address"] === userEmail);
     console.log("Find project id");
+    console.log("User id=", userId);
     const { id: projectId } = projects.find((project) => project.name === data.project.name);
+    console.log("Project id=", projectId);
     const body = {
         userEmail,
         date,
@@ -68,14 +70,13 @@ app.post("/hours", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         userId,
     };
     console.log("create time at timework");
+    console.log("URl=", `https://vladscompany3.teamwork.com/projects/api/v3/projects/${projectId}/time.json`);
     const created = yield fetch(`https://vladscompany3.teamwork.com/projects/api/v3/projects/${projectId}/time.json`, {
         body: JSON.stringify(body),
         headers: {
             Authorization: "Basic " + Buffer.from("twp_B8MG9eAALkD2fS8QTPHh3djd1O8T" + ":" + "password").toString("base64"),
         },
     }).then((data) => data.json());
-    console.log("User id=", userId);
-    console.log("Project id=", projectId);
     console.log("Created", created);
     res.end();
 }));
