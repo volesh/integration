@@ -22,6 +22,8 @@ app.post("/hours", async (req, res) => {
     },
   }).then((data) => data.json());
 
+  console.log("Get data for create from timely");
+
   const data = await fetch(`https://app.timelyapp.com/${account[0].id}${req.body.payload.entity_path}`, {
     headers: {
       "Content-Type": "application/json",
@@ -35,11 +37,15 @@ app.post("/hours", async (req, res) => {
   const minutes = data.duration.minutes;
   //https://vladscompany3.teamwork.com/projects/api/v3/projects/911551/time.json
 
+  console.log("Get peoples");
+
   const { people } = await fetch(`https://vladscompany3.teamwork.com/people.json`, {
     headers: {
       Authorization: "Basic " + Buffer.from("twp_B8MG9eAALkD2fS8QTPHh3djd1O8T" + ":" + "password").toString("base64"),
     },
   }).then((data) => data.json());
+
+  console.log("Get projects");
 
   const { projects } = await fetch(`https://vladscompany3.teamwork.com/projects.json`, {
     headers: {
@@ -47,7 +53,11 @@ app.post("/hours", async (req, res) => {
     },
   }).then((data) => data.json());
 
+  console.log("Find people id");
+
   const { id: userId } = people.find((user) => user["email-address"] === userEmail);
+  console.log("Find project id");
+
   const { id: projectId } = projects.find((project) => project.name === data.project.name);
 
   const body = {
@@ -58,6 +68,8 @@ app.post("/hours", async (req, res) => {
     minutes,
     userId,
   };
+  console.log("create time at timework");
+
   const created = await fetch(`https://vladscompany3.teamwork.com/projects/api/v3/projects/${projectId}/time.json`, {
     body: JSON.stringify(body),
     headers: {
