@@ -33,16 +33,41 @@ app.post("/hours", async (req, res) => {
   const description = data.note;
   const hours = data.duration.hours;
   const minutes = data.duration.minutes;
+  //https://vladscompany3.teamwork.com/projects/api/v3/projects/911551/time.json
 
-  // console.log("Data=", {
-  //   userEmail,
-  //   date,
-  //   description,
-  //   hours,
-  //   minutes,
-  // });
+  const { people } = await fetch(`https://vladscompany3.teamwork.com/people.json`, {
+    headers: {
+      Authorization: "Basic " + Buffer.from("twp_B8MG9eAALkD2fS8QTPHh3djd1O8T" + ":" + "password").toString("base64"),
+    },
+  }).then((data) => data.json());
 
-  console.log("Data=", data);
+  const { projects } = await fetch(`https://vladscompany3.teamwork.com/projects.json`, {
+    headers: {
+      Authorization: "Basic " + Buffer.from("twp_B8MG9eAALkD2fS8QTPHh3djd1O8T" + ":" + "password").toString("base64"),
+    },
+  }).then((data) => data.json());
+
+  const { id: userId } = people.find((user) => user["email-address"] === userEmail);
+  const { id: projectId } = projects.find((project) => project.name === data.project.name);
+
+  const body = {
+    userEmail,
+    date,
+    description,
+    hours,
+    minutes,
+    userId,
+  };
+  const created = await fetch(`https://vladscompany3.teamwork.com/projects/api/v3/projects/${projectId}/time.json`, {
+    body: JSON.stringify(body),
+    headers: {
+      Authorization: "Basic " + Buffer.from("twp_B8MG9eAALkD2fS8QTPHh3djd1O8T" + ":" + "password").toString("base64"),
+    },
+  }).then((data) => data.json());
+
+  console.log("User id=", userId);
+  console.log("Project id=", projectId);
+  console.log("Created", created);
 
   res.end();
 });
