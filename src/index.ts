@@ -57,8 +57,10 @@ app.post("/hours", async (req, res) => {
 
   const { id: userId } = people.find((user) => user["email-address"] === userEmail);
   console.log("Find project id");
+  console.log("User id=", userId);
 
   const { id: projectId } = projects.find((project) => project.name === data.project.name);
+  console.log("Project id=", projectId);
 
   const body = {
     userEmail,
@@ -77,8 +79,6 @@ app.post("/hours", async (req, res) => {
     },
   }).then((data) => data.json());
 
-  console.log("User id=", userId);
-  console.log("Project id=", projectId);
   console.log("Created", created);
 
   res.end();
