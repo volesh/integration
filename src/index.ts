@@ -67,11 +67,14 @@ app.post("/hours", async (req, res) => {
       userEmail,
       date,
       description,
+      isBillable: true,
       hours,
       minutes,
       userId,
     },
   };
+  console.log("body", body);
+
   console.log("create time at timework");
   console.log("URl=", `https://vladscompany3.teamwork.com/projects/api/v3/projects/${projectId}/time.json`);
 
