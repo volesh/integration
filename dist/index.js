@@ -36,7 +36,18 @@ app.post("/hours", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
         },
     }).then((data) => data.json());
-    console.log("Data=", data);
+    const userEmail = data.user.email;
+    const date = data.day;
+    const description = data.note;
+    const hours = data.duration.hours;
+    const minutes = data.duration.minutes;
+    console.log("Data=", {
+        userEmail,
+        date,
+        description,
+        hours,
+        minutes,
+    });
     res.end();
 }));
 app.post("/budget", (req, res) => __awaiter(void 0, void 0, void 0, function* () {

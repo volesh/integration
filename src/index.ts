@@ -28,7 +28,18 @@ app.post("/hours", async (req, res) => {
       Authorization: "Bearer " + "VgGvnfBPk-c7oeohnQz6JEAp1AveEeyxpAwdsDNqw6I",
     },
   }).then((data) => data.json());
-  console.log("Data=", data);
+  const userEmail = data.user.email;
+  const date = data.day;
+  const description = data.note;
+  const hours = data.duration.hours;
+  const minutes = data.duration.minutes;
+  console.log("Data=", {
+    userEmail,
+    date,
+    description,
+    hours,
+    minutes,
+  });
 
   res.end();
 });
