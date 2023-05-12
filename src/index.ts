@@ -34,13 +34,15 @@ app.post("/hours", async (req, res) => {
   const hours = data.duration.hours;
   const minutes = data.duration.minutes;
 
-  console.log("Data=", {
-    userEmail,
-    date,
-    description,
-    hours,
-    minutes,
-  });
+  // console.log("Data=", {
+  //   userEmail,
+  //   date,
+  //   description,
+  //   hours,
+  //   minutes,
+  // });
+
+  console.log("Data=", data);
 
   res.end();
 });

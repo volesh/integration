@@ -41,13 +41,14 @@ app.post("/hours", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const description = data.note;
     const hours = data.duration.hours;
     const minutes = data.duration.minutes;
-    console.log("Data=", {
-        userEmail,
-        date,
-        description,
-        hours,
-        minutes,
-    });
+    // console.log("Data=", {
+    //   userEmail,
+    //   date,
+    //   description,
+    //   hours,
+    //   minutes,
+    // });
+    console.log("Data=", data);
     res.end();
 }));
 app.post("/budget", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
