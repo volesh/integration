@@ -69,7 +69,7 @@ app.post("/hours", (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             isBillable: true,
             hours,
             minutes,
-            userId,
+            userId: +userId,
         },
     };
     console.log("body", body);

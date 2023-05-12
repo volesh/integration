@@ -70,7 +70,7 @@ app.post("/hours", async (req, res) => {
       isBillable: true,
       hours,
       minutes,
-      userId,
+      userId: +userId,
     },
   };
   console.log("body", body);
